@@ -11,6 +11,7 @@ answers = [ ("size()", "len()", "length()", "count()"), ("3.14", "'42'", "10", "
 correct_answers_index = [1, 2, 0, 3, 1]
 # El usuario deberá contestar 3 preguntas
 
+puntaje=0
 
 for _ in range(3):
     # Se selecciona una pregunta aleatoria
@@ -23,16 +24,19 @@ for _ in range(3):
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
     
-    #PUNTO 1 !!!!!!!!
-        #(opcion 1)
         user_answer = input("Respuesta: ")
         if user_answer.isnumeric() and 0 <= (int(user_answer)-1) <= 3:
             if int(user_answer)-1 == correct_answers_index[question_index]:
                 print("¡Correcto!")
+                puntaje+=1
                 break
+            else:
+                puntaje+= -0.5
         else:
             print('respuesta no valida')
             sys.exit(1)
     else:
          print("Incorrecto. La respuesta correcta es:")
          print(answers[question_index][correct_answers_index[question_index]])
+
+print(f'Puntaje total: {puntaje}')
